@@ -1,0 +1,25 @@
+name: Passive C++ CI
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  noop:
+    name: Passive check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show basic info
+        run: |
+          echo "Repository checked out successfully."
+          echo "Current branch: $(git branch --show-current)"
+          echo "Files in repo root:"
+          ls -la
+
+      - name: Do nothing (passive step)
+        run: echo "No build or test actions are performed in this workflow."
